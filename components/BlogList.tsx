@@ -1,5 +1,4 @@
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
-import { ClientRequest } from "http";
 import urlFor from "lib/urlFor";
 import Image from "next/image";
 import { Post } from "typings";
