@@ -15,13 +15,13 @@ const Header = () => {
             alt="logo"
           />
         </Link>
-        <h2>FallingStar&apos;s Blog</h2>
+        <h2>Chris Pagan&apos;s Blog</h2>
       </div>
 
       <div>
         <Link
           href="https://portfolio-chris-pagan.vercel.app"
-          className="px-5 py-3 test-sm md:text-base bg-gray-900 text-violet-400 flex items-center rounded-full text-center"
+          className="px-5 py-3 test-sm md:text-base bg-[#4D356D]  hover:bg-slate-700 flex items-center rounded-full text-center"
         >Check out my porfolio</Link>
       </div>
     </header>

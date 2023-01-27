@@ -5,6 +5,7 @@ import Image from "next/image";
 import urlFor from "../../../../lib/urlFor";
 import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "components/RichTextComponents";
+import Link from "next/link";
 
 type Props = {
   params: {
@@ -75,7 +76,7 @@ async function Post({ params: { slug } }: Props) {
                 <div className="w-64">
                   <h3 className="text-lg font-bold">{post.author.name}</h3>
                   <div>
-                    {/* TODO: Author Bio */}
+                    <PortableText value={post.author.bio} components={RichTextComponents} />
                   </div>
                 </div>
               </div>
@@ -95,6 +96,9 @@ async function Post({ params: { slug } }: Props) {
       </section>
 
       <PortableText value={post.body} components={RichTextComponents} />
+      <div className="flex justify-center pt-24">
+        <Link href="/"><button className="rounded-full bg-[#4D356D] p-2 hover:bg-slate-700">Return Home</button></Link>
+      </div>
 
     </article>
   );
