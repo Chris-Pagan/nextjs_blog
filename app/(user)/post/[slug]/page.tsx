@@ -13,18 +13,17 @@ type Props = {
   };
 };
 
-export const revalidate = 5;
+export const revalidate = 0;
 
-export async function generateStaticParams(){
-  const query = groq`*[_type =='post'] { slug }`
-  const slugs:Post[] = await client.fetch(query)
-  const slugRoutes = slugs.map((slug) => slug.slug.current)
+export async function generateStaticParams() {
+  const query = groq`*[_type =='post'] { slug }`;
+  const slugs: Post[] = await client.fetch(query);
+  const slugRoutes = slugs.map((slug) => slug.slug.current);
 
   return slugRoutes.map((slug) => ({
     slug,
-  }))
+  }));
 }
-
 
 async function Post({ params: { slug } }: Props) {
   const query = groq`
@@ -35,9 +34,6 @@ async function Post({ params: { slug } }: Props) {
     categories[]->
   }
   `;
-
-
-
 
   const post: Post = await client.fetch(query, { slug });
 
@@ -76,7 +72,10 @@ async function Post({ params: { slug } }: Props) {
                 <div className="w-64">
                   <h3 className="text-lg font-bold">{post.author.name}</h3>
                   <div>
-                    <PortableText value={post.author.bio} components={RichTextComponents} />
+                    <PortableText
+                      value={post.author.bio}
+                      components={RichTextComponents}
+                    />
                   </div>
                 </div>
               </div>
@@ -84,7 +83,10 @@ async function Post({ params: { slug } }: Props) {
                 <h2 className="italic pt-10">{post.description}</h2>
                 <div className="flex items-center justify-end mt-auto space-x-2">
                   {post.categories.map((category) => (
-                    <p key={category._id} className="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-semibold mt-4">
+                    <p
+                      key={category._id}
+                      className="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-semibold mt-4"
+                    >
                       {category.title}
                     </p>
                   ))}
@@ -97,9 +99,12 @@ async function Post({ params: { slug } }: Props) {
 
       <PortableText value={post.body} components={RichTextComponents} />
       <div className="flex justify-center pt-24">
-        <Link href="/"><button className="rounded-full bg-[#4D356D] p-2 hover:bg-slate-700">Return Home</button></Link>
+        <Link href="/">
+          <button className="rounded-full bg-[#4D356D] p-2 hover:bg-slate-700">
+            Return Home
+          </button>
+        </Link>
       </div>
-
     </article>
   );
 }
